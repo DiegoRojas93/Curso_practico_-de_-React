@@ -1,20 +1,60 @@
 # React
 
-### agregando compatibilidad con todos los navegadores usando Babel
+### Webpack: Empaquetando nuestros módulos
 
-**Babel** es una herramienta muy popular para escribir JavaSript moderno y tranformarlo en código que pueda entender cualquier navegador.
+Webpack es una herramienta que nos ayuda a compilar multiples archivos (JavaScript, HTML, CSS, imágenes) en uno solo (o a veces un poco más) que tendrá todo nuestro código listo para producción.
 
-Para tener esta herramienta deberemos installar las siguientes dependecias en nuestro proyecto.
+Instalación de Webpack y algunos plugins:
 
-'npm install babel/loader @babel/core @babel/preset-env @babel/preset-react -D -E'
+'npm install webpack webpack-cli html-webpack-plugin html-loader  -D -E'
 
-Luego de ello deberemos crear el archivo ***.babelrc*** para poder configurar Babel.
+Configuración minima de Webpack(webpack.config.js)
+
+```
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader',
+        },
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      filename: './index.html',
+    }),
+  ],
+};
+```
+
+Scriptpara ejecutar las tareas de Webpack (package.json)
 
 ```
 {
-	"presets": [
-		"@babel/preset-env", 	//soportara las capacidades de JavaScript
-		"@babel/preset-react"	// soportara las capacidades de React
-	]
+  ""scripts"": {
+    ""build"": ""webpack --mode production""
+  },
 }
 ```
