@@ -1,18 +1,36 @@
 # React
 
-### Servidor de desarrollo
+### Estilos con el preprocesador Sass
 
-Generamente siempre necesitaremos ver nuestro proyecto que vamos construyendo, por ello necesitaremos construir un entorno de desarrollo local para observar lo que cambiamos en nuestro proyecto.
+Los ***preprocesadores*** como ***Sass*** son herramientas que nos permiten escribir CSS con una sintaxis un poco diferente y más amigable que luego se transformará en CSS normal. Gracias a Sass podemos escribir CSS con variables, mixins, bucles, entre otras características.
 
-'npm install webpack-dev-server -D -E'
+Para usar Sass deberemos instalar las sigientes dependencias.
 
-Despues de instalado el paquete en nuestra terminal, deberemos agregar un Script en nuestro ***package.json*** para ejecutar el servidor de Webpack y visualizar los cambio en tiempo real.
+'npm install mini-css-extract-plugin css-loader node-sass sass-loader'
+
+luego Configuraremos el archivo de Webpack.config.js
 
 ```
-{
-  ""scripts"": {
-    ""build"": ""webpack --mode production"",
-    ""start"": ""webpack-dev-server --open --mode development""
-  },
-}
+const MiniCssExtractPlugin = require ('mini-css-extract-plugin')
+
+module.exports = {
+	module: {
+		rules: [
+			{
+				test: /\.(s*)css$/,
+				use: [
+					{loader:MiniCssExtractPlugin.loader},
+					'css-loader',
+					'sass-loader,
+				]
+			}
+		]
+	}
+},
+
+plugins: [
+	new MiniCssExtractPlugin({
+		filename: 'assets/[name].css'
+	})
+]
 ```
