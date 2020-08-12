@@ -1,40 +1,19 @@
-# React
+# Proyecto practico de React
 
-### PropTypes
+Para poder mirar este proyecto deberas clonar este mismo en tyu computadora.
 
-Los **PropTypes** son una propiedad de nuestros componentes que nos permiten especificar qué tipo de elementos son nuestras props: arrays, strings, números, etc.
+Dentro de la carpeta deberas ejecutar el siguente comando en la terminal de comandos para instalar el las dependencias del proyecto.
 
-Instalación de PropTypes:
+`npm install`
 
-`npm install prop-types -S -E`
+**Nota:** Asegurate que tengas instalado el sigiente paquete en tu computado de porma global. Si no es asi instalo:
 
-Uso de PropTypes:
+`sudo npm install -g json-server`
 
-```
-import React from 'react';
-import PropTypes from 'prop-types';
+Luego de ello ejecuta el siguente comando en la terminal:
 
-const Component = ({ name, lastName, age, list }) => {
-  // ...
-};
+`json-server initialState.json`
 
-Component.propTypes = {
-  name: PropTypes.string,
-  lastName: PropTypes.string,
-  age: PropTypes.number,
-  list: PropTypes.array,
-};
+En otra pestaña de la terminal de comandos deberas ejecutar el siguiente comando para que sea ejecutado el proyecto.
 
-export default Component;
-```
-
-Por defecto, enviar todas nuestras props es opcional, pero con los propTypes podemos especificar cuáles props son obligatorias para que nuestro componente funcione correctamente con el atributo ***isRequired.***
-
-```
-Component.propTypes = {
-  name: PropTypes.string.isRequired, // obligatorio
-  lastName: PropTypes.string.isRequired, // obligatorio
-  age: PropTypes.number, // opcional,
-  list: PropTypes.array, // opcional
-};
-```
+`npm run start`
