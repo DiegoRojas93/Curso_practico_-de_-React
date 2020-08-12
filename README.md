@@ -1,45 +1,35 @@
 # React
 
-### Añadiendo imágenes con Webpack
+### Imports, Variables y Fuentes de Google en Sass
 
-Vamos a usar File Loader para acceder a las imagenes de nuestro proyecto desde el código.
-
-Inicialmente, estos archivos est'aticos se encuentran justo al código de desarrollo. Pero al momento de compilar, Webpack guardara las imagenes en una nueva carpeta justo al código para producción y actualizara nustros componentes (o donde sea que usemos las imágenes) conlos nuevos nombres y rutas de los archivos.
-
-Para ello deberemos instalar la siguiente dependencia.
-
-`npm install file-loader`
-
-Despues procederemos a configurar File-loader en el archivo Webpack.config.js
+Así como JavaScript, Sass nos permite almacenar valores en variables que podemos usar en cualquier otra parte de nuestras hojas de estilo.
 
 ```
-module.exports = {
-	module: {
-    rules:[
-			{
-				test: /\.(png|gif|jpg)$/,
-				use: [
-					{
-						'loader': 'file-loader',
-						options: {
-							name: 'assets/[hash].[ext]',
-						}
-					}
-				]
-			}
-    ]
-  }
+$theme-font: 'Muli, sans-serif;
+$main-color: #8f57fd;
+
+body {
+  background: $main-color;
+  font-family: $theme-font;
 }
 ```
+Podemos guardar nuestras variables en un archivo especial e importarlo desde los archivos de estilo donde queremos usar estas variables.
 
-Uso de File Loader en un componente:
 ```
-import React from 'react';
-import nombreDeLaImagen from '../assets/static/nombre-del-archivo';
+# Vars.scss
+$theme-font: 'Muli, sans-serif;
+$main-color: #8f57fd;
 
-const Component = () => (
-  <img src={nombreDeLaImagen} />
-);
+# App.scss
+@import ""./Vars.scss""
 
-export default Component;
+`body {
+  background: $main-color;
+  font-family: $theme-font;
+}
+```
+También podemos importar hojas de estilo externas a nuestra aplicación. Por ejemplo: las fuentes de Google.
+
+```
+@import url(https://fonts.googleapis.com/css?family=Muli&display-swap)
 ```
