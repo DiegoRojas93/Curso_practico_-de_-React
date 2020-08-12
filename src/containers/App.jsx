@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 
 import Header from '../components/Header';
 import Search from '../components/Search';
@@ -9,35 +9,48 @@ import Footer from '../components/Footer';
 
 import '../assets/styles/App.scss';
 
-const App = () => (
-	<div className="App">
-		<Header />
-		<Search />
+const App = () => {
 
-		<Categories title="Mi lista">
-			<Carousel>
-				<CarouselItem/>
-				<CarouselItem/>
-				<CarouselItem/>
-				<CarouselItem/>
-			</Carousel>
-		</Categories>
+	const [ videos, setVideos ] = useState([]);
 
-		<Categories title="Tedencias">
-			<Carousel>
-				<CarouselItem/>
-				<CarouselItem/>
-			</Carousel>
-		</Categories>
+	useEffect(() => {
+		fetch('http://localhost:3000/initalState')
+			.then(response => response.json())
+			.then(data => setVideos(data));
+	}, []);
 
-		<Categories title="Originales de Platzi Video">
-			<Carousel>
-				<CarouselItem/>
-			</Carousel>
-		</Categories>
+	console.log(videos)
 
-		<Footer/>
-	</div>
-);
+	return (
+		<div className="App">
+			<Header />
+			<Search />
+
+			<Categories title="Mi lista">
+				<Carousel>
+					<CarouselItem/>
+					<CarouselItem/>
+					<CarouselItem/>
+					<CarouselItem/>
+				</Carousel>
+			</Categories>
+
+			<Categories title="Tedencias">
+				<Carousel>
+					<CarouselItem/>
+					<CarouselItem/>
+				</Carousel>
+			</Categories>
+
+			<Categories title="Originales de Platzi Video">
+				<Carousel>
+					<CarouselItem/>
+				</Carousel>
+			</Categories>
+
+			<Footer/>
+		</div>
+	)
+};
 
 export default App;
