@@ -1,35 +1,16 @@
 # React
 
-### Imports, Variables y Fuentes de Google en Sass
+### Creando una Fake API
 
-Así como JavaScript, Sass nos permite almacenar valores en variables que podemos usar en cualquier otra parte de nuestras hojas de estilo.
+Vamos a usar JSON Server para crear una Fake API: una API ““falsa”” construida a partir de un archivo JSON que nos permite preparar nuestro código para consumir una API de verdad en el futuro.
 
-```
-$theme-font: 'Muli, sans-serif;
-$main-color: #8f57fd;
+Instalación de JSON Server
+`sudo npm install -g json-server`
 
-body {
-  background: $main-color;
-  font-family: $theme-font;
-}
-```
-Podemos guardar nuestras variables en un archivo especial e importarlo desde los archivos de estilo donde queremos usar estas variables.
+Recuerda que en Windows debes correr tu terminal de comandos en modo administrador.
+
+Luego Ejecuta el servidor de JSON Server en otra pestaña de la terminal:
 
 ```
-# Vars.scss
-$theme-font: 'Muli, sans-serif;
-$main-color: #8f57fd;
-
-# App.scss
-@import ""./Vars.scss""
-
-`body {
-  background: $main-color;
-  font-family: $theme-font;
-}
-```
-También podemos importar hojas de estilo externas a nuestra aplicación. Por ejemplo: las fuentes de Google.
-
-```
-@import url(https://fonts.googleapis.com/css?family=Muli&display-swap)
+json-server archivoParaTuAPI.json
 ```
