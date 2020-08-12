@@ -1,5 +1,5 @@
-import React from 'react'
-import '../assets/styles/components/Header.scss'
+import React from 'react';
+import '../assets/styles/components/Header.scss';
 
 const Header = () => (
 	<header className="header">
@@ -15,6 +15,6 @@ const Header = () => (
 			</ul>
 		</div>
 	</header>
-)
+);
 
-export default Header
+export default Header;
